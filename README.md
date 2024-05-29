@@ -17,7 +17,6 @@
 * react-router
 * twilio
 * nltk
-* speechrecognition
 
 <br>
 
