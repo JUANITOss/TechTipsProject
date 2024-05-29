@@ -12,6 +12,7 @@
 * Django
 * React (npx)
 * django-cors-headers
+* rest-framework
 * axios
 * react-router
 * twilio
