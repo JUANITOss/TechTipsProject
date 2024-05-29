@@ -1,12 +1,27 @@
+import './App.css';
 import React from 'react';
 
-const Chatbot = () => {
-  return (
-    <div>
-      <h2>Chatbot (Próximamente)</h2>
-      <p>Esta sección aún está en desarrollo. ¡Vuelve pronto para ver las actualizaciones!</p>
-    </div>
-  );
-};
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Homepage from './components/Homepage';
+import Chatbot from './components/Chatbot';
+import Foro from './components/Foro';
+import PreguntasFrecuentes from './components/PreguntasFrecuentes';
+import Tutoriales from './components/Tutoriales';
+import Helpdesk from './components/Helpdesk';
 
-export default Chatbot;
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/chatbot" element={<Chatbot />} />
+        <Route path="/foro" element={<Foro />} />
+        <Route path="/preguntasfrecuentes" element={<PreguntasFrecuentes />} />
+        <Route path="/tutoriales" element={<Tutoriales />} />
+        <Route path="/helpdesk" element={<Helpdesk />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
