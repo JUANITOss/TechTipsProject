@@ -1,27 +1,38 @@
-import './App.css';
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Homepage from './components/Homepage';
-import Chatbot from './components/Chatbot';
-import Foro from './components/Foro';
-import PreguntasFrecuentes from './components/PreguntasFrecuentes';
-import Tutoriales from './components/Tutoriales';
-import Helpdesk from './components/Helpdesk';
+const Chatbot = () => {
+  const [message, setMessage] = useState('');
+  const [response, setResponse] = useState('');
 
-function App() {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post('http://localhost:8000/api/chatbot-response/', { message });
+      setResponse(res.data.response);
+    } catch (error) {
+      console.error('Error al obtener la respuesta del chatbot', error);
+    }
+  };
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/chatbot" element={<Chatbot />} />
-        <Route path="/foro" element={<Foro />} />
-        <Route path="/preguntasfrecuentes" element={<PreguntasFrecuentes />} />
-        <Route path="/tutoriales" element={<Tutoriales />} />
-        <Route path="/helpdesk" element={<Helpdesk />} />
-      </Routes>
-    </Router>
+    <div>
+      <h1>Chatbot</h1>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder="Escribe tu mensaje"
+        />
+        <button type="submit">Enviar</button>
+      </form>
+      <div>
+        <h2>Respuesta del chatbot:</h2>
+        <p>{response}</p>
+      </div>
+    </div>
   );
-}
+};
 
-export default App;
+export default Chatbot;
