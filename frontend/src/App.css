@@ -38,4 +38,25 @@ body, html {
     width: 100%;
     padding: 20px;
   }
-  
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom right, #1e3c72, #2a5298);
+  color: white;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+a {
+  color: #61dafb;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

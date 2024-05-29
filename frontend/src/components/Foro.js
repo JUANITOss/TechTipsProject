@@ -1,13 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import PostList from './PostList';
+import './style/foro.css';
 
 const Foro = () => {
   return (
-    <div>
-      <h2>Foro (Próximamente)</h2>
-      <p>Esta sección aún está en desarrollo. ¡Vuelve pronto para ver las actualizaciones!</p>
+    <div className="foro">
+      <h1>Foro</h1>
+      <Link to="/create-post" className="create-post-link">Crear Nuevo Posteo</Link>
+      <PostList />
     </div>
   );
 };
 
-export default Foro
-
+export default Foro;

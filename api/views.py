@@ -4,6 +4,9 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from nltk.chat.util import Chat, reflections
 from twilio.rest import Client
+from rest_framework import generics
+from .models import Post
+from .serializers import PostSerializer
 
 def homepage(request):
     data = {
@@ -57,3 +60,18 @@ def send_whatsapp_message(request):
     except Exception as e:
         return Response({'status': 'Error al enviar mensaje', 'error': str(e)})
 
+class PostListCreate(generics.ListCreateAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+class PostDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+def delete_post(request, pk):
+    try:
+        post = Post.objects.get(pk=pk)
+        post.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    except Post.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
