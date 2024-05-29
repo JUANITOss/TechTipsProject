@@ -14,6 +14,9 @@
 * django-cors-headers
 * axios
 * react-router
+* twilio
+* nltk
+* speechrecognition
 
 <br>
 
